@@ -1,12 +1,12 @@
 package ca.qc.jeuxdegenie.jdgmobile.view;
 
+import android.app.Activity;
 import ca.qc.jeuxdegenie.jdgmobile.R;
-import android.support.v7.app.ActionBarActivity;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.os.Bundle;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
