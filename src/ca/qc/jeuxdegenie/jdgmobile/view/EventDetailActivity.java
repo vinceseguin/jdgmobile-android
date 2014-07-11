@@ -4,9 +4,7 @@ import ca.qc.jeuxdegenie.jdgmobile.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.ScrollingMovementMethod;
-import android.widget.TextView;
+import android.webkit.WebView;
 
 public class EventDetailActivity extends Activity {
 
@@ -17,8 +15,7 @@ public class EventDetailActivity extends Activity {
 		
 		Intent intent = getIntent();
 		String description = intent.getStringExtra("description");
-		TextView tv = (TextView) findViewById(R.id.decription);
-		tv.setText(Html.fromHtml(description));
-		tv.setMovementMethod(new ScrollingMovementMethod());
+		WebView wv = (WebView) findViewById(R.id.decription);
+		wv.loadData(description, "text/html; charset=UTF-8", null);
 	}
 }

@@ -4,7 +4,11 @@ import android.app.Activity;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Spinner;
 
 public class MainActivity extends Activity {
 	
@@ -12,10 +16,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		ActionBar actionBar = getActionBar();
+		ActionBar actionBar = getActionBar();		
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(false);
-
+		
 		Tab tab = actionBar.newTab()
 				.setText(R.string.horaire)
 				.setTabListener(new TabListener<HoraireFragment>(

@@ -1,11 +1,16 @@
 package ca.qc.jeuxdegenie.jdgmobile.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
@@ -18,17 +23,6 @@ import ca.qc.jeuxdegenie.jdgmobile.view.HoraireFragment;
 public class JSONCalendarDAO extends AsyncTask<String, String, JSONArray> {
 
 	private static String url = "http://192.168.2.15/public/JDGMobile-Web/backend/WS/CalendarWS.php?method=getEvents";
-	
-	private static final String TAG_ID = "id";
-	private static final String TAG_DAY = "day";
-	private static final String TAG_START_DATE = "startDate";
-	private static final String TAG_END_DATE = "endDate";
-	private static final String TAG_START_TIME = "startTime";
-	private static final String TAG_END_TIME = "endTime";
-	private static final String TAG_NAME = "name";
-	private static final String TAG_DESCRIPTION = "description";
-	private static final String TAG_LOCATION = "location";
-	private static final String TAG_HAS_DESCRIPTION = "hasDescription";
 	
 	private HoraireFragment frag;
 	
@@ -51,22 +45,33 @@ public class JSONCalendarDAO extends AsyncTask<String, String, JSONArray> {
 	@Override
 	protected void onPostExecute(JSONArray result) {
 		super.onPostExecute(result);
+		
+		SortedMap<CharSequence, List<Event>> data = new TreeMap<CharSequence, List<Event>>();
+		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA_FRENCH);
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMMM", Locale.CANADA_FRENCH);
+		
 		try {
-			List<Event> events = new ArrayList<Event>();
-			
 			for (int i=0; i<result.length(); i++) {
-				JSONObject obj = result.getJSONObject(i);
-				Event event = new Event(obj.getInt(TAG_ID), obj.getString(TAG_DAY), obj.getString(TAG_START_DATE), 
-										obj.getString(TAG_END_DATE), obj.getString(TAG_START_TIME), 
-										obj.getString(TAG_END_TIME), obj.getString(TAG_NAME), 
-										obj.getString(TAG_DESCRIPTION), obj.getString(TAG_LOCATION), 
-										obj.getString(TAG_HAS_DESCRIPTION));
-				events.add(event);
+				
+				Event event = new Event(result.getJSONObject(i));
+				
+				Date parsedDate = sdf1.parse(event.getStartDate());				
+				String formattedDate = sdf2.format(parsedDate);
+				
+				if (!data.keySet().contains(formattedDate)) {
+					data.put(formattedDate, new ArrayList<Event>());
+				}
+				
+				data.get(formattedDate).add(event);
 			}
 			
-			frag.updateContent(events.toArray(new Event[events.size()]));
+			frag.updateContent(data);
 			
 		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}

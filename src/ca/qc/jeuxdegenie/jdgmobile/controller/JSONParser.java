@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
@@ -34,8 +35,10 @@ public class JSONParser {
 		try {
 			// defaultHttpClient
 			DefaultHttpClient httpClient = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost(url);
-			HttpResponse httpResponse = httpClient.execute(httpPost);
+			HttpGet httpGet = new HttpGet(url);
+			// HttpPost httpPost = new HttpPost(url);
+			// HttpResponse httpResponse = httpClient.execute(httpPost);
+			HttpResponse httpResponse = httpClient.execute(httpGet);
 			HttpEntity httpEntity = httpResponse.getEntity();
 			is = httpEntity.getContent();
 		} catch (UnsupportedEncodingException e) {
@@ -52,7 +55,7 @@ public class JSONParser {
 			StringBuilder sb = new StringBuilder();
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				sb.append(line + "n");
+				sb.append(line + "\n");
 			}
 			is.close();
 			json = sb.toString();

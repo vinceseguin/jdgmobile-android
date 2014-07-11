@@ -1,11 +1,23 @@
 package ca.qc.jeuxdegenie.jdgmobile.model.calendar;
 
-import android.util.Log;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 
  */
-public class Event {
+public class Event implements Comparable<Event> {
+	
+	private static final String TAG_ID = "id";
+	private static final String TAG_DAY = "day";
+	private static final String TAG_START_DATE = "startDate";
+	private static final String TAG_END_DATE = "endDate";
+	private static final String TAG_START_TIME = "startTime";
+	private static final String TAG_END_TIME = "endTime";
+	private static final String TAG_NAME = "name";
+	private static final String TAG_DESCRIPTION = "description";
+	private static final String TAG_LOCATION = "location";
+	private static final String TAG_HAS_DESCRIPTION = "hasDescription";	
 	
 	private int id;
 	private String day;
@@ -17,6 +29,27 @@ public class Event {
 	private String description;
 	private String location;
 	private boolean hasDescription;
+	
+	/**
+	 * 
+	 * @param obj
+	 */
+	public Event(JSONObject obj) {
+		try {
+			this.id = obj.getInt(TAG_ID);
+			this.day = obj.getString(TAG_DAY);
+			this.startDate = obj.getString(TAG_START_DATE); 
+			this.endDate = obj.getString(TAG_END_DATE);
+			this.startTime = obj.getString(TAG_START_TIME);
+			this.endTime = obj.getString(TAG_END_TIME);
+			this.name = obj.getString(TAG_NAME); 
+			this.description = obj.getString(TAG_DESCRIPTION);
+			this.location = obj.getString(TAG_LOCATION); 
+			this.hasDescription = (obj.getString(TAG_HAS_DESCRIPTION).equals("true") ? true : false);			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * 
@@ -187,5 +220,10 @@ public class Event {
 	@Override
 	public String toString() {
 		return this.name;
+	}
+
+	@Override
+	public int compareTo(Event arg0) {
+		return id - arg0.id;
 	}
 }
