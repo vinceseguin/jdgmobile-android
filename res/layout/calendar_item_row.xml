@@ -18,15 +18,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" 
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
 
             <TextView
                 android:id="@+id/txtName"
@@ -55,7 +57,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:paddingRight="5dp"
             android:layout_centerVertical="true"
             android:adjustViewBounds="true" />
     </RelativeLayout>
