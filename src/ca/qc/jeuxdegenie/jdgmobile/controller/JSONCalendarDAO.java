@@ -22,7 +22,7 @@ import ca.qc.jeuxdegenie.jdgmobile.view.HoraireFragment;
  */
 public class JSONCalendarDAO extends AsyncTask<String, String, JSONArray> {
 
-	private static String url = "http://192.168.2.15/public/JDGMobile-Web/backend/WS/CalendarWS.php?method=getEvents";
+	private static String url = "http://192.168.1.112/JDGMobile-Web/backend/WS/CalendarWS.php?method=getEvents";
 	
 	private HoraireFragment frag;
 	

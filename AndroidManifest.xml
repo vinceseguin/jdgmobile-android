@@ -29,5 +29,9 @@
             android:name="ca.qc.jeuxdegenie.jdgmobile.view.EventDetailActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="ca.qc.jeuxdegenie.jdgmobile.view.ResultatDetailActivity"
+            android:label="@string/resultats" >
+        </activity>
     </application>
 </manifest>

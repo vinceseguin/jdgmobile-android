@@ -53,6 +53,6 @@ public class JSONResultatDAO extends AsyncTask<String, String, JSONObject> {
 			e.printStackTrace();
 		}
 		
-		frag.updateContent(data);
+		//frag.updateContent(data);
 	}
 }

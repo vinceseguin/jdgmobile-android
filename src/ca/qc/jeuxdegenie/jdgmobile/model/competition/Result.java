@@ -13,29 +13,36 @@ import org.json.JSONObject;
 public class Result {
 
 	private static final String TAG_NAME = "name";
-	private static final String TAG_IS_LEAF = "leaf";
+	private static final String TAG_LEAF = "leaf";
 	private static final String TAG_LEAF_ID = "leafId";
 	private static final String TAG_ITEMS = "items";
 	
 	private String name;
 	private boolean isLeaf;
 	private int leafId;
-	private List<Result> items = new ArrayList<Result>();
+	private Result[] items;
 	
+	
+	/**
+	 * 
+	 * @param obj
+	 */
 	public Result(JSONObject obj) {
 		try {
 			this.name = obj.getString(TAG_NAME);
-			this.isLeaf = (obj.getString(TAG_IS_LEAF).equals("true") ? true : false);
+			this.isLeaf = obj.getString(TAG_LEAF).equals("true")? true : false;
 			this.leafId = obj.getInt(TAG_LEAF_ID);
 			
-			if (!isLeaf) {
-				JSONArray items = obj.getJSONArray(TAG_ITEMS);
-				
-				for (int i=0; i<items.length(); i++) {				
-					Result item = new Result(items.getJSONObject(i));
-					this.items.add(item);
+			List<Result> children = new ArrayList<Result>();
+			if (!isLeaf){
+				JSONArray jArrChildren = obj.getJSONArray(TAG_ITEMS);
+				for (int i=0; i<jArrChildren.length(); i++) {
+					JSONObject child = jArrChildren.getJSONObject(i);
+					children.add(new Result(child));
 				}
 			}
+			this.items = children.toArray(new Result[children.size()]);
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -48,7 +55,7 @@ public class Result {
 	 * @param leafId
 	 * @param items
 	 */
-	public Result(String name, boolean isLeaf, int leafId, List<Result> items) {
+	public Result(String name, boolean isLeaf, int leafId, Result[] items) {
 		this.name = name;
 		this.isLeaf = isLeaf;
 		this.leafId = leafId;
@@ -100,19 +107,21 @@ public class Result {
 	/**
 	 * @return the items
 	 */
-	public List<Result> getItems() {
+	public Result[] getItems() {
 		return items;
 	}
 
 	/**
 	 * @param items the items to set
 	 */
-	public void setItems(List<Result> items) {
+	public void setItems(Result[] items) {
 		this.items = items;
 	}
 
 	@Override
 	public String toString() {
-		return name;
+		return this.getName();
 	}
+	
+	
 }

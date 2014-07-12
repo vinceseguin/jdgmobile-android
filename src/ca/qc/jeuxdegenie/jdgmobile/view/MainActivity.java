@@ -1,14 +1,10 @@
 package ca.qc.jeuxdegenie.jdgmobile.view;
 
-import android.app.Activity;
-import ca.qc.jeuxdegenie.jdgmobile.R;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.content.res.Resources;
+import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Spinner;
+import ca.qc.jeuxdegenie.jdgmobile.R;
 
 public class MainActivity extends Activity {
 	
