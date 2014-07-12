@@ -11,16 +11,18 @@ import java.util.TreeMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
 import ca.qc.jeuxdegenie.jdgmobile.view.HoraireFragment;
 
 public class CalendarEventsWorker implements IJsonBackgroundWorker {
 
-	private static String url = "http://192.168.1.112/JDGMobile-Web/backend/WS/CalendarWS.php?method=getEvents";
+	private String url = "backend/WS/CalendarWS.php?method=getEvents";
 	private HoraireFragment context;
 	
 	public CalendarEventsWorker(HoraireFragment context) {
 		this.context = context;
+		this.url = context.getText(R.string.backendLocation) + url;
 	}
 	
 	public String getUrl() {

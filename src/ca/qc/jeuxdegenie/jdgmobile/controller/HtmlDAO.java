@@ -14,7 +14,7 @@ public class HtmlDAO extends AsyncTask<String, String, String>{
 	@Override
 	protected String doInBackground(String... params) {
 		HttpHandler httpHandler = new HttpHandler();
-		String response = httpHandler.getHTTPResponse(backgroundWorker.getUrl()); 
+		String response = httpHandler.getHTTPResponse(backgroundWorker.getUrl());
 		return response;
 	}
 	

@@ -30,5 +30,4 @@ public class ResultatDetailActivity extends Activity {
 		WebView wv = (WebView) findViewById(R.id.decription);
 		wv.loadData(result, "text/html; charset=UTF-8", null);
 	}
-	
 }

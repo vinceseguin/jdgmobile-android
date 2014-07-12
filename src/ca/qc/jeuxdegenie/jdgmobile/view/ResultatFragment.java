@@ -16,10 +16,13 @@ import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.Result;
 
-
 public class ResultatFragment extends Fragment {
 	
-	ExpandableListView expListView;
+	private List<Result> competitions;
+	private List<List<Result>> competitionTypesChildren;
+	
+	private ExpandableListView expListView;
+	private ResultatFragmentAdapter rla;
 	
 	/* (non-Javadoc)
 	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -41,8 +44,21 @@ public class ResultatFragment extends Fragment {
 		new JsonDAO(new CompetitionTypesWorker(this)).execute();
 	}
 	
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		if (competitions != null && competitionTypesChildren != null) {
+			updateContent(competitions, competitionTypesChildren);
+		}
+	}
+
 	public void updateContent(List<Result> competitions, List<List<Result>> competitionTypesChildren) {
-		final ResultatFragmentAdapter rla = new ResultatFragmentAdapter(this, competitions, competitionTypesChildren);
+		
+		this.competitions = competitions;
+		this.competitionTypesChildren = competitionTypesChildren;
+		
+		rla = new ResultatFragmentAdapter(this, competitions, competitionTypesChildren);
 		expListView.setAdapter(rla);
 		
 		//ajust group indicator arrow to the right side

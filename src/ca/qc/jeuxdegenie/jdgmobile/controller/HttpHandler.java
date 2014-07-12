@@ -14,7 +14,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.util.Log;
 
-
 public class HttpHandler {
 	static InputStream is = null;
 	
@@ -42,8 +41,7 @@ public class HttpHandler {
 		
 		String response = "";
 		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					is, "iso-8859-1"), 8);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"), 8);
 			StringBuilder sb = new StringBuilder();
 			String line = null;
 			while ((line = reader.readLine()) != null) {

@@ -24,9 +24,13 @@ import ca.qc.jeuxdegenie.jdgmobile.model.calendar.EventAdapter;
  * 
  * @author vgentilcore
  */
-public class HoraireFragment extends ListFragment {
+public class HoraireFragment extends ListFragment implements OnItemSelectedListener {
 	
-	SortedMap<CharSequence, List<Event>> data;
+	private SortedMap<CharSequence, List<Event>> data;
+	private int selectedPosition = -1;
+	
+	private Spinner spinner;
+	private ArrayAdapter<CharSequence> adapter;
 	
 	/* (non-Javadoc)
 	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -35,7 +39,10 @@ public class HoraireFragment extends ListFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		return inflater.inflate(R.layout.horaire_fragment, container, false);
+		View view = inflater.inflate(R.layout.horaire_fragment, container, false);
+		spinner = (Spinner) view.findViewById(R.id.spinner);
+		
+		return view;
 	}
 
 	/* (non-Javadoc)
@@ -56,9 +63,9 @@ public class HoraireFragment extends ListFragment {
 	public void onResume() {
 		super.onResume();
 		
-		if (data != null) {			
-			this.updateContent(data);
-		}		
+		if (data != null) {
+			updateContent(data);
+		}
 	}
 
 	/**
@@ -69,12 +76,10 @@ public class HoraireFragment extends ListFragment {
 		
 		this.data = data;
 		
-		final Spinner spinner = (Spinner) getActivity().findViewById(R.id.spinner);
-		
 		// Create an ArrayAdapter using the string array and a default spinner layout
-		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getActivity(), 
-											   android.R.layout.simple_spinner_item, 
-											   data.keySet().toArray(new CharSequence[data.keySet().size()]));
+		adapter = new ArrayAdapter<CharSequence>(getActivity(), 
+								   android.R.layout.simple_spinner_item, 
+								   data.keySet().toArray(new CharSequence[data.keySet().size()]));
 		
 		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -82,29 +87,35 @@ public class HoraireFragment extends ListFragment {
 		// Apply the adapter to the spinner
 		spinner.setAdapter(adapter);
 		
+		// Select last selected date
+		if (selectedPosition != -1) {
+			spinner.setSelection(selectedPosition);
+		}		
+		
 		// Register the item selected listener for the spinner...
 		// When a date is selected, show only the events of that date
-		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+		spinner.setOnItemSelectedListener(this);
+	}
 
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				
-				String selectedDate = (String) spinner.getSelectedItem();
-				
-				List<Event> selectedDates = data.get(selectedDate);
-				
-				EventAdapter ea = new EventAdapter(getActivity(), 
-												   R.layout.calendar_item_row, 
-												   selectedDates);
-				setListAdapter(ea);
-			}
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3) {
+		
+		// Keep track of selected date to use on resume...
+		selectedPosition = spinner.getSelectedItemPosition();
+		
+		String selectedDate = (String) spinner.getSelectedItem();
+		List<Event> selectedDates = data.get(selectedDate);
+		
+		EventAdapter ea = new EventAdapter(getActivity(), 
+										   R.layout.calendar_item_row, 
+										   selectedDates);
+		setListAdapter(ea);
+	}
 
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

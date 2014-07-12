@@ -7,16 +7,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
 import ca.qc.jeuxdegenie.jdgmobile.view.ResultatFragment;
 
 public class CompetitionTypesWorker implements IJsonBackgroundWorker {
 
-	private static String url = "http://192.168.1.112/JDGMobile-Web/backend/WS/CompetitionWS.php?method=getCompetition";
+	private String url = "backend/WS/CompetitionWS.php?method=getCompetition";
 	private ResultatFragment context;
 	
 	public CompetitionTypesWorker(ResultatFragment context) {
 		this.context = context;
+		this.url = context.getText(R.string.backendLocation) + url;
 	}
 	
 	public String getUrl() {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class PartenaireFragment extends Fragment {
@@ -25,6 +26,8 @@ public class PartenaireFragment extends Fragment {
 		super.onViewCreated(view, savedInstanceState);
 		
 		WebView wv = (WebView) getActivity().findViewById(R.id.partenaires);
+		WebSettings settings = wv.getSettings();
+		settings.setDefaultTextEncodingName("utf-8");
 		wv.loadUrl("file:///android_asset/www/partners/partners.html");
 	}
 }
