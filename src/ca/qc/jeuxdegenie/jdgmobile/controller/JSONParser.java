@@ -14,6 +14,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.util.Log;
 
@@ -22,15 +23,37 @@ import android.util.Log;
  */
 public class JSONParser {
 	static InputStream is = null;
-	static JSONArray jObj = null;
-	static String json = "";
 	
 	// constructor
 	public JSONParser() {
 		
-	}	
+	}
 	
-	public JSONArray getJSONFromUrl(String url) {
+	public JSONObject getJSONObjectFromURL(String url) { 
+		// try parse the string to a JSON object
+		JSONObject jObj = null;
+		try {
+			jObj = new JSONObject(getJSONFromURL(url));
+		} catch (JSONException e) {
+			Log.e("JSON Parser", "Error parsing data " + e.toString());
+		}
+		// return JSON String
+		return jObj;
+	}
+	
+	public JSONArray getJSONArrayFromURL(String url) { 
+		// try parse the string to a JSON object
+		JSONArray jArr = null;
+		try {
+			jArr = new JSONArray(getJSONFromURL(url));
+		} catch (JSONException e) {
+			Log.e("JSON Parser", "Error parsing data " + e.toString());
+		}
+		// return JSON String
+		return jArr;
+	}
+	
+	private String getJSONFromURL(String url) {
 		// Making HTTP request
 		try {
 			// defaultHttpClient
@@ -49,6 +72,7 @@ public class JSONParser {
 			e.printStackTrace();
 		}
 		
+		String json = null;
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					is, "iso-8859-1"), 8);
@@ -62,14 +86,6 @@ public class JSONParser {
 		} catch (Exception e) {
 			Log.e("Buffer Error", "Error converting result " + e.toString());
 		}
-		
-		// try parse the string to a JSON object
-		try {
-			jObj = new JSONArray(json);
-		} catch (JSONException e) {
-			Log.e("JSON Parser", "Error parsing data " + e.toString());
-		}
-		// return JSON String
-		return jObj;
+		return json;
 	}
 }

@@ -38,7 +38,7 @@ public class JSONCalendarDAO extends AsyncTask<String, String, JSONArray> {
 	@Override
 	protected JSONArray doInBackground(String... params) {
 		JSONParser jParser = new JSONParser();
-		JSONArray json = jParser.getJSONFromUrl(url);
+		JSONArray json = jParser.getJSONArrayFromURL(url);
 		return json;
 	}
 	

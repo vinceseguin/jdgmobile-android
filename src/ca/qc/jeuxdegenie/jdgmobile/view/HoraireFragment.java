@@ -25,6 +25,8 @@ import android.widget.Spinner;
  */
 public class HoraireFragment extends ListFragment {
 	
+	SortedMap<CharSequence, List<Event>> data;
+	
 	/* (non-Javadoc)
 	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
 	 */
@@ -49,17 +51,27 @@ public class HoraireFragment extends ListFragment {
 		new JSONCalendarDAO(this).execute();
 	}
 	
+	@Override
+	public void onViewStateRestored(Bundle savedInstanceState) {
+		super.onViewStateRestored(savedInstanceState);
+		
+		if (data != null) {			
+			this.updateContent(data);
+		}
+	}
+
 	/**
 	 * 
 	 * @param items
 	 */
 	public void updateContent(final SortedMap<CharSequence, List<Event>> data) {
 		
+		this.data = data;
+		
 		final Spinner spinner = (Spinner) getActivity().findViewById(R.id.spinner);
 		
 		// Create an ArrayAdapter using the string array and a default spinner layout
-		ArrayAdapter<CharSequence> adapter = 
-				new ArrayAdapter<CharSequence>(getActivity(), 
+		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getActivity(), 
 											   android.R.layout.simple_spinner_item, 
 											   data.keySet().toArray(new CharSequence[data.keySet().size()]));
 		
@@ -69,6 +81,8 @@ public class HoraireFragment extends ListFragment {
 		// Apply the adapter to the spinner
 		spinner.setAdapter(adapter);
 		
+		// Register the item selected listener for the spinner...
+		// When a date is selected, show only the events of that date
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -80,8 +94,8 @@ public class HoraireFragment extends ListFragment {
 				List<Event> selectedDates = data.get(selectedDate);
 				
 				EventAdapter ea = new EventAdapter(getActivity(), 
-						   R.layout.calendar_item_row, 
-						   selectedDates.toArray(new Event[selectedDates.size()]));
+												   R.layout.calendar_item_row, 
+												   selectedDates);
 				setListAdapter(ea);
 			}
 

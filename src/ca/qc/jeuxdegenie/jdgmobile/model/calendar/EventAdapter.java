@@ -1,5 +1,7 @@
 package ca.qc.jeuxdegenie.jdgmobile.model.calendar;
 
+import java.util.List;
+
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.view.EventDetailActivity;
 import android.app.Activity;
@@ -22,15 +24,15 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
 	private Context context;
 	private int resource;
-	private Event[] objects = null;
-	
-	public EventAdapter(Context context, int resource, Event[] objects) {
+	private List<Event> objects = null;
+
+	public EventAdapter(Context context, int resource, List<Event> objects) {
 		super(context, resource, objects);
 		this.context = context;
 		this.resource = resource;
 		this.objects = objects;
 	}
-
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
@@ -56,7 +58,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 			holder = (EventHolder) row.getTag();
 		} */
 		
-		final Event event = objects[position];
+		final Event event = objects.get(position);
 		holder.txtStartTime.setText(event.getStartTime());
 		holder.txtName.setText(event.getName());
 		holder.txtLocation.setText(event.getLocation());
