@@ -51,14 +51,14 @@ public class HoraireFragment extends ListFragment {
 		super.onCreate(savedInstanceState);	
 		new JsonDAO(new CalendarEventsWorker(this)).execute();
 	}
-	
+
 	@Override
-	public void onViewStateRestored(Bundle savedInstanceState) {
-		super.onViewStateRestored(savedInstanceState);
+	public void onResume() {
+		super.onResume();
 		
 		if (data != null) {			
 			this.updateContent(data);
-		}
+		}		
 	}
 
 	/**
