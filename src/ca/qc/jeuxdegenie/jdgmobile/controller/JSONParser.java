@@ -11,13 +11,13 @@ import android.util.Log;
 /**
  * http://www.learn2crack.com/2013/10/android-asynctask-json-parsing-example.html
  */
-public class JSONParser {
+public class JsonParser {
 	static InputStream is = null;
-	private HttpHandler httpHandler = new HttpHandler();
+	private HttpHandler httpHandler;
 	
 	// constructor
-	public JSONParser() {
-		
+	public JsonParser() {
+		httpHandler = new HttpHandler();
 	}
 	
 	public JSONObject getJSONObjectFromURL(String url) { 
@@ -45,7 +45,6 @@ public class JSONParser {
 	}
 	
 	private String getJSONFromURL(String url) {
-		httpHandler = new HttpHandler();
 		return httpHandler.getHTTPResponse(url);
 	}
 }

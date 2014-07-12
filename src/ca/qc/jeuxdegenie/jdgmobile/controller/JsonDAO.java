@@ -15,7 +15,7 @@ public class JsonDAO extends AsyncTask<String, String, JSONArray>{
 
 	@Override
 	protected JSONArray doInBackground(String... params) {
-		JSONParser jParser = new JSONParser();
+		JsonParser jParser = new JsonParser();
 		JSONArray json = jParser.getJSONArrayFromURL(backgroundWorker.getUrl()); 
 		return json;
 	}

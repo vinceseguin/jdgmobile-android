@@ -2,8 +2,6 @@ package ca.qc.jeuxdegenie.jdgmobile.model.calendar;
 
 import java.util.List;
 
-import ca.qc.jeuxdegenie.jdgmobile.R;
-import ca.qc.jeuxdegenie.jdgmobile.view.EventDetailActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +11,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TableRow;
 import android.widget.TextView;
+import ca.qc.jeuxdegenie.jdgmobile.R;
+import ca.qc.jeuxdegenie.jdgmobile.view.EventDetailActivity;
 
 /**
  * 

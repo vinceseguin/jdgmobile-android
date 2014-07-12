@@ -74,7 +74,6 @@ public class ResultatFragment extends Fragment {
 				   intent.putExtra("leafId", child.getLeafId());
 				   startActivity(intent);
 				   
-				   //Toast.makeText(getActivity(), child.toString() + " (leafId = " + child.getLeafId() +")", Toast.LENGTH_SHORT).show();
 				   return false;
 			   }
 		});
