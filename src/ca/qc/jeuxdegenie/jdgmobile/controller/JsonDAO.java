@@ -3,7 +3,7 @@ package ca.qc.jeuxdegenie.jdgmobile.controller;
 import org.json.JSONArray;
 
 import android.os.AsyncTask;
-import ca.qc.jeuxdegenie.jdgmobile.model.competition.IJsonBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
 
 public class JsonDAO extends AsyncTask<String, String, JSONArray>{
 

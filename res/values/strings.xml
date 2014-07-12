@@ -8,5 +8,6 @@
     <string name="resultats">Résultats</string>
     <string name="partenaire">Partenaire</string>
     <string name="apropos">À propos</string>
+    <string name="backendLocation">http://192.168.1.112/JDGMobile-Web/</string>
 
 </resources>

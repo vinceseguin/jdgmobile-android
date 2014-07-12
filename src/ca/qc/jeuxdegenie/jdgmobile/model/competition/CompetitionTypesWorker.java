@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
 import ca.qc.jeuxdegenie.jdgmobile.view.ResultatFragment;
 
 public class CompetitionTypesWorker implements IJsonBackgroundWorker {

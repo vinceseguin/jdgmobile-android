@@ -1,4 +1,4 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.competition;
+package ca.qc.jeuxdegenie.jdgmobile.model.interfaces;
 
 import org.json.JSONArray;
 

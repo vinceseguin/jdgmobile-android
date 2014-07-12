@@ -3,10 +3,6 @@ package ca.qc.jeuxdegenie.jdgmobile.view;
 import java.util.List;
 import java.util.SortedMap;
 
-import ca.qc.jeuxdegenie.jdgmobile.R;
-import ca.qc.jeuxdegenie.jdgmobile.controller.JSONCalendarDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.EventAdapter;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +12,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import ca.qc.jeuxdegenie.jdgmobile.R;
+import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.EventAdapter;
 
 /**
  * http://fr.openclassrooms.com/informatique/cours/aller-plus-loin-dans-le-developpement-android/listfragment
@@ -48,7 +49,7 @@ public class HoraireFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
-		new JSONCalendarDAO(this).execute();
+		new JsonDAO(new CalendarEventsWorker(this)).execute();
 	}
 	
 	@Override
