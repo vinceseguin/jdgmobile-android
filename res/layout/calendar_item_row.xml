@@ -1,80 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal"
-    android:padding="1dp"
-    android:stretchColumns="0" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <TableRow
-        android:id="@+id/tableRow1"
+    <TextView
+        android:id="@+id/txtStartTime"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:padding="1dip" >
+        android:paddingLeft="5dp"
+        android:background="#336699"
+        android:gravity="fill"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtStartTime"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true"
-            android:background="#336699"
-            android:gravity="fill"
-            android:textColor="#FFFFFF"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-        
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" 
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtLocation"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="1dp"
+                android:gravity="fill"
+                android:textColor="#FF0000"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/imgIcon"
-            android:adjustViewBounds="true"
-            android:maxHeight="20dp"
-            android:maxWidth="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
-            android:gravity="center_vertical" />        
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="1dip" >
-
-        <TextView
-            android:id="@+id/txtName"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="0dp"
-            android:gravity="fill"
-            android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/tableRow3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="1dip" >
-
-        <TextView
-            android:id="@+id/txtLocation"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="1dp"
-            android:layout_marginTop="1dp"
-            android:gravity="fill"
-            android:textColor="#FF0000"
-            android:textSize="12dp"
-            android:textStyle="bold" />
-    </TableRow>
-
-</TableLayout>
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:gravity="center_vertical" />
+    </RelativeLayout>
+</LinearLayout>

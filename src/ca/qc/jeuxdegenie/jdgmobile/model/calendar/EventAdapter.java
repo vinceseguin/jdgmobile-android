@@ -39,24 +39,16 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		View row = convertView;
 		EventHolder holder = null;
 		
-		// if (row == null) {
-			LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-			row = inflater.inflate(resource, parent, false);
-			
-			TableRow tableRow1 = (TableRow) row.findViewById(R.id.tableRow1);
-			TableRow tableRow2 = (TableRow) row.findViewById(R.id.tableRow2);
-			TableRow tableRow3 = (TableRow) row.findViewById(R.id.tableRow3);
-			
-			holder = new EventHolder();
-			holder.txtStartTime = (TextView) tableRow1.findViewById(R.id.txtStartTime);
-			holder.imgIcon = (ImageView) tableRow1.findViewById(R.id.imgIcon);
-			holder.txtName = (TextView) tableRow2.findViewById(R.id.txtName);
-			holder.txtLocation = (TextView) tableRow3.findViewById(R.id.txtLocation);			
-						
-			row.setTag(holder);
-		/* } else {
-			holder = (EventHolder) row.getTag();
-		} */
+		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+		row = inflater.inflate(resource, parent, false);
+		
+		holder = new EventHolder();
+		holder.txtStartTime = (TextView) row.findViewById(R.id.txtStartTime);
+		holder.txtName = (TextView) row.findViewById(R.id.txtName);
+		holder.imgIcon = (ImageView) row.findViewById(R.id.imgIcon);
+		holder.txtLocation = (TextView) row.findViewById(R.id.txtLocation);
+		
+		row.setTag(holder);
 		
 		final Event event = objects.get(position);
 		holder.txtStartTime.setText(event.getStartTime());
