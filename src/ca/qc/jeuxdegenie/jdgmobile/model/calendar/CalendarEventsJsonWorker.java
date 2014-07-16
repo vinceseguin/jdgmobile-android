@@ -15,12 +15,12 @@ import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
 import ca.qc.jeuxdegenie.jdgmobile.view.HoraireFragment;
 
-public class CalendarEventsWorker implements IJsonBackgroundWorker {
+public class CalendarEventsJsonWorker implements IJsonBackgroundWorker {
 
 	private String url = "backend/WS/CalendarWS.php?method=getEvents";
 	private HoraireFragment context;
 	
-	public CalendarEventsWorker(HoraireFragment context) {
+	public CalendarEventsJsonWorker(HoraireFragment context) {
 		this.context = context;
 		this.url = context.getText(R.string.backendLocation) + url;
 	}

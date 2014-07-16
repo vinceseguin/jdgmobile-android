@@ -4,12 +4,12 @@ import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IHtmlBackgroundWorker;
 import ca.qc.jeuxdegenie.jdgmobile.view.ResultatDetailActivity;
 
-public class CompetitionResultsWorker implements IHtmlBackgroundWorker {
+public class CompetitionResultsJsonWorker implements IHtmlBackgroundWorker {
 	
 	private String url = "backend/WS/CompetitionWS.php?method=getCompetitionResult&competitionId=";
 	private ResultatDetailActivity context;
 	
-	public CompetitionResultsWorker(ResultatDetailActivity context) {
+	public CompetitionResultsJsonWorker(ResultatDetailActivity context) {
 		this.context = context;
 		this.url = context.getText(R.string.backendLocation) + url + context.getCompetitionId();
 	}

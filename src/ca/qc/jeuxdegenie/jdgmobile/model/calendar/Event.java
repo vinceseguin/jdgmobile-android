@@ -3,6 +3,8 @@ package ca.qc.jeuxdegenie.jdgmobile.model.calendar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.database.Cursor;
+
 /**
  * 
  */
@@ -17,7 +19,18 @@ public class Event implements Comparable<Event> {
 	private static final String TAG_NAME = "name";
 	private static final String TAG_DESCRIPTION = "description";
 	private static final String TAG_LOCATION = "location";
-	private static final String TAG_HAS_DESCRIPTION = "hasDescription";	
+	private static final String TAG_HAS_DESCRIPTION = "hasDescription";
+	
+	private static final int NUM_COL_ID = 0;
+	private static final int NUM_COL_DAY = 1;
+	private static final int NUM_COL_START_DATE = 2;
+	private static final int NUM_COL_END_DATE = 3;
+	private static final int NUM_COL_START_TIME = 4;
+	private static final int NUM_COL_END_TIME = 5;
+	private static final int NUM_COL_NAME = 6;
+	private static final int NUM_COL_DESCRIPTION = 7;
+	private static final int NUM_COL_LOCATION = 8;
+	private static final int NUM_COL_HAS_DESCRIPTION = 9;	
 	
 	private int id;
 	private String day;
@@ -49,6 +62,19 @@ public class Event implements Comparable<Event> {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Event(Cursor c) {
+		this.id = c.getInt(NUM_COL_ID);
+		this.day = c.getString(NUM_COL_DAY);
+		this.startDate = c.getString(NUM_COL_START_DATE); 
+		this.endDate = c.getString(NUM_COL_END_DATE);
+		this.startTime = c.getString(NUM_COL_START_TIME);
+		this.endTime = c.getString(NUM_COL_END_TIME);
+		this.name = c.getString(NUM_COL_NAME); 
+		this.description = c.getString(NUM_COL_DESCRIPTION);
+		this.location = c.getString(NUM_COL_LOCATION); 
+		this.hasDescription = (c.getInt(NUM_COL_HAS_DESCRIPTION) == 1 ? true : false);
 	}
 	
 	/**

@@ -2,7 +2,7 @@ package ca.qc.jeuxdegenie.jdgmobile.view;
 
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.HtmlDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionResultsWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionResultsJsonWorker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ public class ResultatDetailActivity extends Activity {
 		
 		Intent intent = getIntent();
 		competitionId = intent.getIntExtra("leafId", 0);
-		new HtmlDAO(new CompetitionResultsWorker(this)).execute();
+		new HtmlDAO(new CompetitionResultsJsonWorker(this)).execute();
 	}
 	
 	public void updateContent(String result) {

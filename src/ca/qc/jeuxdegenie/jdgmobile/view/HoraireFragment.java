@@ -13,10 +13,15 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import ca.qc.jeuxdegenie.jdgmobile.R;
+import ca.qc.jeuxdegenie.jdgmobile.controller.DataAccessFacade;
 import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventSqlDataUpdateJsonWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsJsonWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsSqLiteWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
 import ca.qc.jeuxdegenie.jdgmobile.model.calendar.EventAdapter;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
 
 /**
  * http://fr.openclassrooms.com/informatique/cours/aller-plus-loin-dans-le-developpement-android/listfragment
@@ -24,13 +29,17 @@ import ca.qc.jeuxdegenie.jdgmobile.model.calendar.EventAdapter;
  * 
  * @author vgentilcore
  */
-public class HoraireFragment extends ListFragment implements OnItemSelectedListener {
+public class HoraireFragment extends ListFragment implements OnItemSelectedListener, IUpdatableFragment {
 	
 	private SortedMap<CharSequence, List<Event>> data;
 	private int selectedPosition = -1;
 	
 	private Spinner spinner;
 	private ArrayAdapter<CharSequence> adapter;
+	
+	private JsonDAO jsonDAO;
+	private JsonDAO sqlDataUpdatejsonDAO;
+	private SqLiteDAO sqLiteDAO;
 	
 	/* (non-Javadoc)
 	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -55,8 +64,8 @@ public class HoraireFragment extends ListFragment implements OnItemSelectedListe
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);	
-		new JsonDAO(new CalendarEventsWorker(this)).execute();
+		super.onCreate(savedInstanceState);		
+		DataAccessFacade.getInstance().execute(this);
 	}
 
 	@Override
@@ -117,5 +126,29 @@ public class HoraireFragment extends ListFragment implements OnItemSelectedListe
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public JsonDAO getJsonDAO() {
+		if (jsonDAO == null) {
+			jsonDAO = new JsonDAO(new CalendarEventsJsonWorker(this));
+		}
+		return jsonDAO;
+	}
+
+	@Override
+	public SqLiteDAO getSqLiteDAO() {
+		if (sqLiteDAO == null) {
+			sqLiteDAO = new SqLiteDAO(new CalendarEventsSqLiteWorker(this), getActivity());
+		}
+		return sqLiteDAO;
+	}
+
+	@Override
+	public JsonDAO getSqlDataUpdateJsonDAO() {
+		if (sqlDataUpdatejsonDAO == null) {
+			sqlDataUpdatejsonDAO = new JsonDAO(new CalendarEventSqlDataUpdateJsonWorker(this));
+		}
+		return sqlDataUpdatejsonDAO;
 	}
 }

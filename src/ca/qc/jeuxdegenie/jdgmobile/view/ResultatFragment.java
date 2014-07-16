@@ -12,17 +12,29 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import ca.qc.jeuxdegenie.jdgmobile.R;
+import ca.qc.jeuxdegenie.jdgmobile.controller.DataAccessFacade;
 import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventSqlDataUpdateJsonWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsJsonWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsSqLiteWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesJsonWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesSqLiteWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesSqlDataUpdateJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.Result;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
 
-public class ResultatFragment extends Fragment {
+public class ResultatFragment extends Fragment implements IUpdatableFragment {
 	
 	private List<Result> competitions;
 	private List<List<Result>> competitionTypesChildren;
 	
 	private ExpandableListView expListView;
 	private ResultatFragmentAdapter rla;
+	
+	private JsonDAO jsonDAO;
+	private JsonDAO sqlDataUpdatejsonDAO;
+	private SqLiteDAO sqLiteDAO;
 	
 	/* (non-Javadoc)
 	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -40,8 +52,8 @@ public class ResultatFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		new JsonDAO(new CompetitionTypesWorker(this)).execute();
+		// DataAccessFacade.getInstance().execute(this);
+		new JsonDAO(new CompetitionTypesJsonWorker(this)).execute();
 	}
 	
 	@Override
@@ -94,4 +106,28 @@ public class ResultatFragment extends Fragment {
 		expListView.setIndicatorBounds(width - getDipsFromPixel(50), width - getDipsFromPixel(10));
 	}
 
+	@Override
+	public JsonDAO getJsonDAO() {
+		if (jsonDAO == null) {
+			jsonDAO = new JsonDAO(new CompetitionTypesJsonWorker(this));
+		}
+		return jsonDAO;
+	}
+
+	@Override
+	public SqLiteDAO getSqLiteDAO() {
+		if (sqLiteDAO == null) {
+			sqLiteDAO = new SqLiteDAO(new CompetitionTypesSqLiteWorker(this), getActivity());
+		}
+		return sqLiteDAO;
+	}
+
+	@Override
+	public JsonDAO getSqlDataUpdateJsonDAO() {
+		if (sqlDataUpdatejsonDAO == null) {
+			sqlDataUpdatejsonDAO = new JsonDAO(new CompetitionTypesSqlDataUpdateJsonWorker(this));
+		}
+		return sqlDataUpdatejsonDAO;
+	}
+	
 }

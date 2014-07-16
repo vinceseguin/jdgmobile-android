@@ -25,5 +25,4 @@ public class JsonDAO extends AsyncTask<String, String, JSONArray>{
 		super.onPostExecute(result);
 		backgroundWorker.doWork(result);	
 	}
-
 }

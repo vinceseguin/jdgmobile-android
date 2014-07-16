@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.database.Cursor;
+
 /**
  * 
  */
@@ -17,11 +19,14 @@ public class Result {
 	private static final String TAG_LEAF_ID = "leafId";
 	private static final String TAG_ITEMS = "items";
 	
+	private static final int NUM_COL_NAME = 0;
+	private static final int NUM_COL_LEAF = 1;
+	private static final int NUM_COL_LEAF_ID = 2;
+	
 	private String name;
 	private boolean isLeaf;
 	private int leafId;
 	private Result[] items;
-	
 	
 	/**
 	 * 
@@ -46,6 +51,24 @@ public class Result {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Result(Cursor c) {
+		this.name = c.getString(NUM_COL_NAME);
+		this.isLeaf = c.getString(NUM_COL_LEAF).equals("true")? true : false;
+		this.leafId = c.getInt(NUM_COL_LEAF_ID);
+		
+		/*
+		List<Result> children = new ArrayList<Result>();
+		if (!isLeaf){
+			JSONArray jArrChildren = obj.getJSONArray(TAG_ITEMS);
+			for (int i=0; i<jArrChildren.length(); i++) {
+				JSONObject child = jArrChildren.getJSONObject(i);
+				children.add(new Result(child));
+			}
+		}
+		this.items = children.toArray(new Result[children.size()]);
+		*/
 	}
 	
 	/**
