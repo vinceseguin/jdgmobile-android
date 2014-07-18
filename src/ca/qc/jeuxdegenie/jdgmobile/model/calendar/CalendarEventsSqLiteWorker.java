@@ -9,6 +9,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import android.database.Cursor;
+import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.ISqLiteBackgroundWorker;
 import ca.qc.jeuxdegenie.jdgmobile.view.HoraireFragment;
 
@@ -56,5 +57,13 @@ public class CalendarEventsSqLiteWorker implements ISqLiteBackgroundWorker {
 		}
 		
 		context.updateContent(data);
+	}
+
+	public String getCreateTableQuery() {
+		return context.getResources().getText(R.string.sqlCreateEventTable).toString();
+	}
+
+	public String getDropTableQuery() {
+		return context.getResources().getText(R.string.sqlDropEventTable).toString();
 	}
 }

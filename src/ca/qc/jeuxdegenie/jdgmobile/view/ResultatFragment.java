@@ -15,9 +15,6 @@ import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.DataAccessFacade;
 import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventSqlDataUpdateJsonWorker;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsJsonWorker;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsSqLiteWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesSqLiteWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesSqlDataUpdateJsonWorker;
@@ -26,7 +23,7 @@ import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
 
 public class ResultatFragment extends Fragment implements IUpdatableFragment {
 	
-	private List<Result> competitions;
+	private List<Result> competitionTypes;
 	private List<List<Result>> competitionTypesChildren;
 	
 	private ExpandableListView expListView;
@@ -52,28 +49,28 @@ public class ResultatFragment extends Fragment implements IUpdatableFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// DataAccessFacade.getInstance().execute(this);
-		new JsonDAO(new CompetitionTypesJsonWorker(this)).execute();
+		DataAccessFacade.getInstance().execute(this);
+		//new JsonDAO(new CompetitionTypesJsonWorker(this)).execute();
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
 		
-		if (competitions != null && competitionTypesChildren != null) {
-			updateContent(competitions, competitionTypesChildren);
+		if (competitionTypes != null && competitionTypesChildren != null) {
+			updateContent(competitionTypes, competitionTypesChildren);
 		}
 	}
 
-	public void updateContent(List<Result> competitions, List<List<Result>> competitionTypesChildren) {
+	public void updateContent(List<Result> competitionTypes, List<List<Result>> competitionTypesChildren) {
 		
-		this.competitions = competitions;
+		this.competitionTypes = competitionTypes;
 		this.competitionTypesChildren = competitionTypesChildren;
 		
-		rla = new ResultatFragmentAdapter(this, competitions, competitionTypesChildren);
+		rla = new ResultatFragmentAdapter(this, competitionTypes, competitionTypesChildren);
 		expListView.setAdapter(rla);
 		
-		//ajust group indicator arrow to the right side
+		//Adjust group indicator arrow to the right side
 		setGroupIndicatorToRight();
 			
 		expListView.setOnChildClickListener(new OnChildClickListener() {
