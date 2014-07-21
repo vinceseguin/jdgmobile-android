@@ -11,7 +11,6 @@ public class CompetitionResultsSqlDataUpdateHtmlWorker implements IHtmlBackgroun
 	private static final String TAG_COMPETITION_ID = "competition_id";
 	private static final String TAG_COMPETITION_RESULT = "competition_result";
 	
-	private String tableName = "mobile_result";
 	private String url = "backend/WS/CompetitionWS.php?method=getAllCompetitionResult";
 	private ResultFragment context;
 	
@@ -26,7 +25,7 @@ public class CompetitionResultsSqlDataUpdateHtmlWorker implements IHtmlBackgroun
 
 	@Override
 	public void doWork(String result) {
-		SqLiteDAO sqLiteDAO = new SqLiteDAO(context.getActivity());
+		SqLiteDAO sqLiteDAO = context.getSqLiteDAO();
 		
 		int competitionId = 1;
 		for (String competitionResultHTML: result.split("COMPETITION")){
@@ -36,7 +35,7 @@ public class CompetitionResultsSqlDataUpdateHtmlWorker implements IHtmlBackgroun
 			values.put(TAG_COMPETITION_RESULT, competitionResultHTML);
 			String where = TAG_COMPETITION_ID + "=" + competitionId;
 			
-			sqLiteDAO.updateData(tableName, values, where, null);
+			sqLiteDAO.updateData(values, where, null);
 			competitionId++;
 		}    
 	}

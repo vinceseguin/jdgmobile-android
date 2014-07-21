@@ -1,11 +1,11 @@
 package ca.qc.jeuxdegenie.jdgmobile.controller;
 
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.ISqLiteBackgroundWorker;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.ISqLiteBackgroundWorker;
 
 /**
  * 
@@ -16,13 +16,10 @@ public class SqLiteDAO extends AsyncTask<String, String, Cursor> {
 	private ISqLiteBackgroundWorker backgroundWorker;	
 	private SqLiteDatabaseHelper databaseHelper;
 	
-	public SqLiteDAO(Context context) {
-		this.databaseHelper = new SqLiteDatabaseHelper(context);
-	}
-	
 	public SqLiteDAO(ISqLiteBackgroundWorker backgroundWorker, Context context) {
 		this.backgroundWorker = backgroundWorker;
 		this.databaseHelper = new SqLiteDatabaseHelper(context);
+		
 	}
 	
 	@Override
@@ -52,14 +49,21 @@ public class SqLiteDAO extends AsyncTask<String, String, Cursor> {
 	
 	/**
 	 * 
+	 * @param values
 	 */
 	public void insertData(ContentValues values) {
 		SQLiteDatabase bdd = databaseHelper.getWritableDatabase();
 		bdd.insert(backgroundWorker.getTableName(), null, values);
 	}
 	
-	public void updateData(String tableName, ContentValues values, String where, String[] whereValues) {
+	/**
+	 * 
+	 * @param values
+	 * @param where
+	 * @param whereValues
+	 */
+	public void updateData(ContentValues values, String where, String[] whereValues) {
 		SQLiteDatabase bdd = databaseHelper.getWritableDatabase();
-		bdd.update(tableName, values, where, whereValues);
+		bdd.update(backgroundWorker.getTableName(), values, where, whereValues);
 	}
 }

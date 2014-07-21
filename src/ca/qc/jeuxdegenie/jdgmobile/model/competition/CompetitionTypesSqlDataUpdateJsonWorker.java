@@ -13,7 +13,6 @@ import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.HtmlDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
 import ca.qc.jeuxdegenie.jdgmobile.view.ResultFragment;
 
 public class CompetitionTypesSqlDataUpdateJsonWorker implements IJsonBackgroundWorker {
@@ -34,9 +33,8 @@ public class CompetitionTypesSqlDataUpdateJsonWorker implements IJsonBackgroundW
 	}
 	
 	@Override
-	public void doWork(JSONArray result) {
-		IUpdatableContext frag = (IUpdatableContext) context;		
-		SqLiteDAO sqLiteDAO = frag.getSqLiteDAO();
+	public void doWork(JSONArray result) {	
+		SqLiteDAO sqLiteDAO = context.getSqLiteDAO();
 		
 		try {
 			List<Result> competitionTypes = new ArrayList<Result>();
