@@ -8,11 +8,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.ContentValues;
+import android.widget.Toast;
 import ca.qc.jeuxdegenie.jdgmobile.R;
+import ca.qc.jeuxdegenie.jdgmobile.controller.HtmlDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
-import ca.qc.jeuxdegenie.jdgmobile.view.ResultatFragment;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
+import ca.qc.jeuxdegenie.jdgmobile.view.ResultFragment;
 
 public class CompetitionTypesSqlDataUpdateJsonWorker implements IJsonBackgroundWorker {
 
@@ -21,19 +23,19 @@ public class CompetitionTypesSqlDataUpdateJsonWorker implements IJsonBackgroundW
 	private static final String TAG_COMPETITION_ID = "competition_id";
 	private static final String TAG_COMPETITION_NAME = "competition_name";
 	private static final String TAG_COMPETITION_TYPE = "competition_type";
-	private static final String TAG_COMPETITION_RESULT = "competition_result";
+
 	
 	private String url = "backend/WS/CompetitionWS.php?method=getCompetition";
-	private ResultatFragment context;
+	private ResultFragment context;
 	
-	public CompetitionTypesSqlDataUpdateJsonWorker(ResultatFragment context) {
+	public CompetitionTypesSqlDataUpdateJsonWorker(ResultFragment context) {
 		this.context = context;
 		this.url = context.getText(R.string.backendLocation) + url;
 	}
 	
 	@Override
 	public void doWork(JSONArray result) {
-		IUpdatableFragment frag = (IUpdatableFragment) context;		
+		IUpdatableContext frag = (IUpdatableContext) context;		
 		SqLiteDAO sqLiteDAO = frag.getSqLiteDAO();
 		
 		try {
@@ -65,6 +67,13 @@ public class CompetitionTypesSqlDataUpdateJsonWorker implements IJsonBackgroundW
 					sqLiteDAO.insertData(values);
 				}	
 			}
+			
+			
+			
+			Toast.makeText(context.getActivity(), context.getText(R.string.resultSynch), Toast.LENGTH_LONG).show();
+			//update competition results
+			new HtmlDAO(new CompetitionResultsSqlDataUpdateHtmlWorker(context)).execute();
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

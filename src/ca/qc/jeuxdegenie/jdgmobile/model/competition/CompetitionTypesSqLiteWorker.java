@@ -6,15 +6,15 @@ import java.util.List;
 import android.database.Cursor;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.ISqLiteBackgroundWorker;
-import ca.qc.jeuxdegenie.jdgmobile.view.ResultatFragment;
+import ca.qc.jeuxdegenie.jdgmobile.view.ResultFragment;
 
 public class CompetitionTypesSqLiteWorker implements ISqLiteBackgroundWorker {
 
 	private String tableName = "mobile_result";
 	
-	private ResultatFragment context;
+	private ResultFragment context;
 	
-	public CompetitionTypesSqLiteWorker(ResultatFragment context) {
+	public CompetitionTypesSqLiteWorker(ResultFragment context) {
 		this.context = context;
 	}
 	

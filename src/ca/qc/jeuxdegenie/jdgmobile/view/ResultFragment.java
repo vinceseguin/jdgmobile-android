@@ -19,15 +19,15 @@ import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesSqLiteWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionTypesSqlDataUpdateJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.Result;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
 
-public class ResultatFragment extends Fragment implements IUpdatableFragment {
+public class ResultFragment extends Fragment implements IUpdatableContext {
 	
 	private List<Result> competitionTypes;
 	private List<List<Result>> competitionTypesChildren;
 	
 	private ExpandableListView expListView;
-	private ResultatFragmentAdapter rla;
+	private ResultFragmentAdapter rla;
 	
 	private JsonDAO jsonDAO;
 	private JsonDAO sqlDataUpdatejsonDAO;
@@ -49,7 +49,10 @@ public class ResultatFragment extends Fragment implements IUpdatableFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//new use for online mode (updates competition list and their results subsequently)
 		DataAccessFacade.getInstance().execute(this);
+		
+		//old use for online mode
 		//new JsonDAO(new CompetitionTypesJsonWorker(this)).execute();
 	}
 	
@@ -67,7 +70,7 @@ public class ResultatFragment extends Fragment implements IUpdatableFragment {
 		this.competitionTypes = competitionTypes;
 		this.competitionTypesChildren = competitionTypesChildren;
 		
-		rla = new ResultatFragmentAdapter(this, competitionTypes, competitionTypesChildren);
+		rla = new ResultFragmentAdapter(this, competitionTypes, competitionTypesChildren);
 		expListView.setAdapter(rla);
 		
 		//Adjust group indicator arrow to the right side
@@ -79,7 +82,7 @@ public class ResultatFragment extends Fragment implements IUpdatableFragment {
 				   //Create a new activity with the child's id
 				   Result child = (Result) rla.getChild(groupPosition, childPosition);
 				   
-				   Intent intent = new Intent(getActivity(), ResultatDetailActivity.class);
+				   Intent intent = new Intent(getActivity(), ResultDetailActivity.class);
 				   intent.putExtra("leafId", child.getLeafId());
 				   startActivity(intent);
 				   
@@ -118,7 +121,7 @@ public class ResultatFragment extends Fragment implements IUpdatableFragment {
 		}
 		return sqLiteDAO;
 	}
-
+	
 	@Override
 	public JsonDAO getSqlDataUpdateJsonDAO() {
 		if (sqlDataUpdatejsonDAO == null) {

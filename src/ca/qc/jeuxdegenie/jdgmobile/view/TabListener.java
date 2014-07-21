@@ -6,7 +6,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 
 /*
-CODE EMPRUNTÃ‰ :
+CODE EMPRUNTÉ :
 Les lignes suivantes proviennent du site web :
    http://developer.android.com/guide/topics/ui/actionbar.html
 This class provides callbacks for tab events, such as when the 
@@ -56,4 +56,4 @@ public class TabListener<T extends Fragment> implements android.app.ActionBar.Ta
     }
 }
 
-/* FIN DU CODE EMPRUNTÃ‰ */
+/* FIN DU CODE EMPRUNTÉ */

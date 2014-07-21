@@ -30,7 +30,7 @@
             android:label="@string/horaire" >
         </activity>
         <activity
-            android:name="ca.qc.jeuxdegenie.jdgmobile.view.ResultatDetailActivity"
+            android:name="ca.qc.jeuxdegenie.jdgmobile.view.ResultDetailActivity"
             android:label="@string/resultats" >
         </activity>
     </application>

@@ -13,14 +13,14 @@ import org.json.JSONException;
 
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
-import ca.qc.jeuxdegenie.jdgmobile.view.HoraireFragment;
+import ca.qc.jeuxdegenie.jdgmobile.view.CalendarFragment;
 
 public class CalendarEventsJsonWorker implements IJsonBackgroundWorker {
 
 	private String url = "backend/WS/CalendarWS.php?method=getEvents";
-	private HoraireFragment context;
+	private CalendarFragment context;
 	
-	public CalendarEventsJsonWorker(HoraireFragment context) {
+	public CalendarEventsJsonWorker(CalendarFragment context) {
 		this.context = context;
 		this.url = context.getText(R.string.backendLocation) + url;
 	}

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class AProposFragment extends Fragment {
+public class PartnerFragment extends Fragment {
 
 	/* (non-Javadoc)
 	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -18,16 +18,16 @@ public class AProposFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		return inflater.inflate(R.layout.apropos_fragment, container, false);
+		return inflater.inflate(R.layout.partenaire_fragment, container, false);
 	}
-	
+
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		
-		WebView wv = (WebView) getActivity().findViewById(R.id.apropos);
+		WebView wv = (WebView) getActivity().findViewById(R.id.partenaires);
 		WebSettings settings = wv.getSettings();
 		settings.setDefaultTextEncodingName("utf-8");
-		wv.loadUrl("file:///android_asset/www/about/about.html");
+		wv.loadUrl("file:///android_asset/www/partners/partners.html");
 	}
 }

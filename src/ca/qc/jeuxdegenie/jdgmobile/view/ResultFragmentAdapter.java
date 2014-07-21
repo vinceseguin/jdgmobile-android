@@ -17,13 +17,13 @@ import ca.qc.jeuxdegenie.jdgmobile.model.competition.Result;
 	 * 
 	 * @description Adapter to for the ExpandableListView
 	 */
-	public class ResultatFragmentAdapter extends BaseExpandableListAdapter {
+	public class ResultFragmentAdapter extends BaseExpandableListAdapter {
 
 		private Fragment context;
 		private List<Result> groups;
         private List<List<Result>> children;
         
-		public ResultatFragmentAdapter(Fragment context, List<Result> groups, List<List<Result>> children) {
+		public ResultFragmentAdapter(Fragment context, List<Result> groups, List<List<Result>> children) {
 			this.context = context;
 			this.groups = groups;
 			this.children = children;

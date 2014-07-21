@@ -21,7 +21,7 @@ import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsSqLiteWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
 import ca.qc.jeuxdegenie.jdgmobile.model.calendar.EventAdapter;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
 
 /**
  * http://fr.openclassrooms.com/informatique/cours/aller-plus-loin-dans-le-developpement-android/listfragment
@@ -29,7 +29,7 @@ import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
  * 
  * @author vgentilcore
  */
-public class HoraireFragment extends ListFragment implements OnItemSelectedListener, IUpdatableFragment {
+public class CalendarFragment extends ListFragment implements OnItemSelectedListener, IUpdatableContext {
 	
 	private SortedMap<CharSequence, List<Event>> data;
 	private int selectedPosition = -1;

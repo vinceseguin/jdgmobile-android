@@ -19,11 +19,12 @@ public class Result {
 	private static final String TAG_LEAF_ID = "leafId";
 	private static final String TAG_ITEMS = "items";
 	
-	private static final int NUM_COL_COMPETITION_TYPE_ID = 1;
-	private static final int NUM_COL_COMPETITION_TYPE_NAME = 2;
-	private static final int NUM_COL_COMPETITION_ID = 3;
-	private static final int NUM_COL_COMPETITION_NAME = 4;
-	private static final int NUM_COL_COMPETITION_TYPE = 5;
+	public static final int NUM_COL_COMPETITION_TYPE_ID = 1;
+	public static final int NUM_COL_COMPETITION_TYPE_NAME = 2;
+	public static final int NUM_COL_COMPETITION_ID = 3;
+	public static final int NUM_COL_COMPETITION_NAME = 4;
+	public static final int NUM_COL_COMPETITION_TYPE = 5;
+	public static final int NUM_COL_COMPETITION_RESULT = 6;
 	
 	private String name;
 	private boolean isLeaf;

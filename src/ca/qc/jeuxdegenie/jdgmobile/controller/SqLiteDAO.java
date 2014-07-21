@@ -16,6 +16,10 @@ public class SqLiteDAO extends AsyncTask<String, String, Cursor> {
 	private ISqLiteBackgroundWorker backgroundWorker;	
 	private SqLiteDatabaseHelper databaseHelper;
 	
+	public SqLiteDAO(Context context) {
+		this.databaseHelper = new SqLiteDatabaseHelper(context);
+	}
+	
 	public SqLiteDAO(ISqLiteBackgroundWorker backgroundWorker, Context context) {
 		this.backgroundWorker = backgroundWorker;
 		this.databaseHelper = new SqLiteDatabaseHelper(context);
@@ -52,5 +56,10 @@ public class SqLiteDAO extends AsyncTask<String, String, Cursor> {
 	public void insertData(ContentValues values) {
 		SQLiteDatabase bdd = databaseHelper.getWritableDatabase();
 		bdd.insert(backgroundWorker.getTableName(), null, values);
+	}
+	
+	public void updateData(String tableName, ContentValues values, String where, String[] whereValues) {
+		SQLiteDatabase bdd = databaseHelper.getWritableDatabase();
+		bdd.update(tableName, values, where, whereValues);
 	}
 }

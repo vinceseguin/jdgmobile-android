@@ -1,6 +1,6 @@
 package ca.qc.jeuxdegenie.jdgmobile.controller;
 
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
 
 /**
  * 
@@ -27,12 +27,12 @@ public class DataAccessFacade {
 
 	/**
 	 * 
-	 * @param frag
+	 * @param context
 	 */
-	public void execute(IUpdatableFragment frag) {		
-		SqLiteDAO sqLiteDAO = frag.getSqLiteDAO();
+	public void execute(IUpdatableContext context) {		
+		SqLiteDAO sqLiteDAO = context.getSqLiteDAO();
 		if (sqLiteDAO.isTableEmpty()) {
-			frag.getSqlDataUpdateJsonDAO().execute();
+			context.getSqlDataUpdateJsonDAO().execute();
 		}
 		sqLiteDAO.execute();
 	}

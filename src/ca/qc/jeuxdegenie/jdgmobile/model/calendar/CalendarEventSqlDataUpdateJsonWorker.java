@@ -7,8 +7,8 @@ import android.content.ContentValues;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableFragment;
-import ca.qc.jeuxdegenie.jdgmobile.view.HoraireFragment;
+import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
+import ca.qc.jeuxdegenie.jdgmobile.view.CalendarFragment;
 
 public class CalendarEventSqlDataUpdateJsonWorker implements IJsonBackgroundWorker {
 
@@ -24,9 +24,9 @@ public class CalendarEventSqlDataUpdateJsonWorker implements IJsonBackgroundWork
 	private static final String TAG_HAS_DESCRIPTION = "hasDescription";	
 	
 	private String url = "backend/WS/CalendarWS.php?method=getEvents";
-	private HoraireFragment context;
+	private CalendarFragment context;
 	
-	public CalendarEventSqlDataUpdateJsonWorker(HoraireFragment context) {
+	public CalendarEventSqlDataUpdateJsonWorker(CalendarFragment context) {
 		this.context = context;
 		this.url = context.getText(R.string.backendLocation) + url;
 	}
@@ -38,10 +38,13 @@ public class CalendarEventSqlDataUpdateJsonWorker implements IJsonBackgroundWork
 
 	@Override
 	public void doWork(JSONArray result) {
-		IUpdatableFragment frag = (IUpdatableFragment) context;		
+		IUpdatableContext frag = (IUpdatableContext) context;		
 		SqLiteDAO sqLiteDAO = frag.getSqLiteDAO();
 		
 		try {
+			//kinda useless.. would need to make it appear before the WS call..
+			//Toast.makeText(context.getActivity(), context.getText(R.string.calendarSynch), Toast.LENGTH_LONG).show();
+			
 			for (int i=0; i<result.length(); i++) {				
 				
 				Event event = new Event(result.getJSONObject(i));				

@@ -11,14 +11,14 @@ import java.util.TreeMap;
 import android.database.Cursor;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.ISqLiteBackgroundWorker;
-import ca.qc.jeuxdegenie.jdgmobile.view.HoraireFragment;
+import ca.qc.jeuxdegenie.jdgmobile.view.CalendarFragment;
 
 public class CalendarEventsSqLiteWorker implements ISqLiteBackgroundWorker {
 
 	private String tableName = "mobile_event";
-	private HoraireFragment context;
+	private CalendarFragment context;
 	
-	public CalendarEventsSqLiteWorker(HoraireFragment context) {
+	public CalendarEventsSqLiteWorker(CalendarFragment context) {
 		this.context = context;
 	}
 	

@@ -18,26 +18,26 @@ public class MainActivity extends Activity {
 		
 		Tab tab = actionBar.newTab()
 				.setText(R.string.horaire)
-				.setTabListener(new TabListener<HoraireFragment>(
-						this, "horaire", HoraireFragment.class));
+				.setTabListener(new TabListener<CalendarFragment>(
+						this, "horaire", CalendarFragment.class));
 		actionBar.addTab(tab);
 
 		tab = actionBar.newTab()
 				.setText(R.string.resultats)
-				.setTabListener(new TabListener<ResultatFragment>(
-						this, "resultats", ResultatFragment.class));
+				.setTabListener(new TabListener<ResultFragment>(
+						this, "resultats", ResultFragment.class));
 		actionBar.addTab(tab);
 
 		tab = actionBar.newTab()
 				.setText(R.string.partenaire)
-				.setTabListener(new TabListener<PartenaireFragment>(
-						this, "partenaire", PartenaireFragment.class));
+				.setTabListener(new TabListener<PartnerFragment>(
+						this, "partenaire", PartnerFragment.class));
 		actionBar.addTab(tab);
 
 		tab = actionBar.newTab()
 				.setText(R.string.apropos)
-				.setTabListener(new TabListener<AProposFragment>(
-						this, "apropos", AProposFragment.class));
+				.setTabListener(new TabListener<AboutFragment>(
+						this, "apropos", AboutFragment.class));
 		actionBar.addTab(tab);
 	}
 }
