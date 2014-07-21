@@ -16,12 +16,12 @@ import android.util.Log;
 
 public class HttpHandler {
 	static InputStream is = null;
-	
+
 	// constructor
 	public HttpHandler() {
-		
-	}	
-	
+
+	}
+
 	public String getHTTPResponse(String url) {
 		// Making HTTP request
 		try {
@@ -38,7 +38,7 @@ public class HttpHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		String response = "";
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"), 8);

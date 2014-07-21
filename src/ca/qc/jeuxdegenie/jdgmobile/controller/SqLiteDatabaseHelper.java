@@ -11,7 +11,7 @@ import ca.qc.jeuxdegenie.jdgmobile.R;
  */
 public class SqLiteDatabaseHelper extends SQLiteOpenHelper {
 	
-	private static final int DB_VERSION_NUMBER = 5;
+	private static final int DB_VERSION_NUMBER = 6;
 	private String sqlCreateEventTable;
 	private String sqlDropEventTable;
 	private String sqlCreateResultTable;

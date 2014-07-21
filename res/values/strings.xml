@@ -14,8 +14,8 @@
     <string name="sqlDropEventTable">DROP TABLE IF EXISTS mobile_event;</string>
 	<string name="sqlCreateResultTable">CREATE TABLE mobile_result (INTEGER PRIMARY KEY, competition_type_id INTEGER, competition_type_name TEXT, competition_id INTEGER, competition_name TEXT, competition_type INTEGER, competition_result TEXT);</string>
     <string name="sqlDropResultTable">DROP TABLE IF EXISTS mobile_result;</string>
-    <string name="calendarSynch">Synchronisation de l\'horaire en cours…</string>
-    <string name="competitionSynch">Synchronisation de la liste des compétitions en cours…</string>
-    <string name="resultSynch">Synchronisation des résultats en cours…</string>
+    <string name="calendarUpdate">Mise à jour de l\'horaire en cours…</string>
+    <string name="resultUpdate">Mise à jour des résultats en cours…</string>
+    <string name="emptyDataOffline">Vous n\'avez aucune donnée, assurez-vous d\'être connecté à internet!</string>
     
 </resources>

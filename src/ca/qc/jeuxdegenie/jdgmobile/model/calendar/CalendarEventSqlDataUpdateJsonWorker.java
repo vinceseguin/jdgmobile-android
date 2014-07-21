@@ -40,8 +40,6 @@ public class CalendarEventSqlDataUpdateJsonWorker implements IJsonBackgroundWork
 		SqLiteDAO sqLiteDAO = context.getSqLiteDAO();
 		
 		try {
-			//kinda useless.. would need to make it appear before the WS call..
-			//Toast.makeText(context.getActivity(), context.getText(R.string.calendarSynch), Toast.LENGTH_LONG).show();
 			
 			for (int i=0; i<result.length(); i++) {				
 				

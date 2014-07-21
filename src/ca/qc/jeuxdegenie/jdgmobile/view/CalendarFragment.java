@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.SortedMap;
 
 import android.app.ListFragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -150,5 +151,15 @@ public class CalendarFragment extends ListFragment implements OnItemSelectedList
 			sqlDataUpdatejsonDAO = new JsonDAO(new CalendarEventSqlDataUpdateJsonWorker(this));
 		}
 		return sqlDataUpdatejsonDAO;
+	}
+
+	@Override
+	public Context getContext() {
+		return this.getActivity();
+	}
+	
+	@Override
+	public String getUpdateMessage() {
+		return this.getActivity().getText(R.string.calendarUpdate).toString();
 	}
 }

@@ -3,6 +3,7 @@ package ca.qc.jeuxdegenie.jdgmobile.view;
 import java.util.List;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -128,6 +129,16 @@ public class ResultFragment extends Fragment implements IUpdatableContext {
 			sqlDataUpdatejsonDAO = new JsonDAO(new CompetitionTypesSqlDataUpdateJsonWorker(this));
 		}
 		return sqlDataUpdatejsonDAO;
+	}
+
+	@Override
+	public Context getContext() {
+		return this.getActivity();
+	}
+
+	@Override
+	public String getUpdateMessage() {
+		return this.getActivity().getText(R.string.resultUpdate).toString();
 	}
 	
 }

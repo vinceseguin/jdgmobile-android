@@ -8,7 +8,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.ContentValues;
-import android.widget.Toast;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.HtmlDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
@@ -66,9 +65,6 @@ public class CompetitionTypesSqlDataUpdateJsonWorker implements IJsonBackgroundW
 				}	
 			}
 			
-			
-			
-			Toast.makeText(context.getActivity(), context.getText(R.string.resultSynch), Toast.LENGTH_LONG).show();
 			//update competition results
 			new HtmlDAO(new CompetitionResultsSqlDataUpdateHtmlWorker(context)).execute();
 

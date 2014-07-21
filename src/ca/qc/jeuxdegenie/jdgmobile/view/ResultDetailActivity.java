@@ -1,6 +1,7 @@
 package ca.qc.jeuxdegenie.jdgmobile.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -62,5 +63,15 @@ public class ResultDetailActivity extends Activity implements IUpdatableContext 
 		
 		//should never be called (table will be populated already)
 		return null;
+	}
+	
+	@Override
+	public Context getContext() {
+		return this;
+	}
+	
+	@Override
+	public String getUpdateMessage() {
+		return this.getText(R.string.resultUpdate).toString();
 	}
 }
