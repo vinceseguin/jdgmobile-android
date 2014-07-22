@@ -23,5 +23,4 @@ public class HtmlDAO extends AsyncTask<String, String, String>{
 		super.onPostExecute(result);
 		backgroundWorker.doWork(result);	
 	}
-
 }

@@ -14,11 +14,13 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.DataAccessFacade;
+import ca.qc.jeuxdegenie.jdgmobile.controller.HtmlDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.competition.CompetitionTypesJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.controller.competition.CompetitionTypesSqLiteWorker;
 import ca.qc.jeuxdegenie.jdgmobile.controller.competition.CompetitionTypesSqlDataUpdateJsonWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.dbversion.DbVersionJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.competition.Result;
 import ca.qc.jeuxdegenie.jdgmobile.view.interfaces.IUpdatableContext;
 
@@ -33,6 +35,7 @@ public class ResultFragment extends Fragment implements IUpdatableContext {
 	private JsonDAO jsonDAO;
 	private JsonDAO sqlDataUpdatejsonDAO;
 	private SqLiteDAO sqLiteDAO;
+	private HtmlDAO htmlDAO;
 	
 	/* (non-Javadoc)
 	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -130,6 +133,14 @@ public class ResultFragment extends Fragment implements IUpdatableContext {
 		}
 		return sqlDataUpdatejsonDAO;
 	}
+	
+	@Override
+	public HtmlDAO getDbVersionHtmlDAO() {
+		if (htmlDAO == null) {
+			htmlDAO = new HtmlDAO(new DbVersionJsonWorker(this));
+		}
+		return htmlDAO; 
+	}
 
 	@Override
 	public Context getContext() {
@@ -140,5 +151,4 @@ public class ResultFragment extends Fragment implements IUpdatableContext {
 	public String getUpdateMessage() {
 		return this.getActivity().getText(R.string.resultUpdate).toString();
 	}
-	
 }

@@ -15,11 +15,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.DataAccessFacade;
+import ca.qc.jeuxdegenie.jdgmobile.controller.HtmlDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.calendar.CalendarEventSqlDataUpdateJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.controller.calendar.CalendarEventsJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.controller.calendar.CalendarEventsSqLiteWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.dbversion.DbVersionJsonWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
 import ca.qc.jeuxdegenie.jdgmobile.view.interfaces.IUpdatableContext;
 
@@ -40,6 +42,7 @@ public class CalendarFragment extends ListFragment implements OnItemSelectedList
 	private JsonDAO jsonDAO;
 	private JsonDAO sqlDataUpdatejsonDAO;
 	private SqLiteDAO sqLiteDAO;
+	private HtmlDAO htmlDAO;
 	
 	/* (non-Javadoc)
 	 * @see android.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -150,6 +153,14 @@ public class CalendarFragment extends ListFragment implements OnItemSelectedList
 			sqlDataUpdatejsonDAO = new JsonDAO(new CalendarEventSqlDataUpdateJsonWorker(this));
 		}
 		return sqlDataUpdatejsonDAO;
+	}
+	
+	@Override
+	public HtmlDAO getDbVersionHtmlDAO() {
+		if (htmlDAO == null) {
+			htmlDAO = new HtmlDAO(new DbVersionJsonWorker(this));
+		}
+		return htmlDAO; 
 	}
 
 	@Override
