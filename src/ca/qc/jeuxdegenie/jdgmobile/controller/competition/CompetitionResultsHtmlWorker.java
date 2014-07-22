@@ -1,7 +1,7 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.competition;
+package ca.qc.jeuxdegenie.jdgmobile.controller.competition;
 
 import ca.qc.jeuxdegenie.jdgmobile.R;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IHtmlBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.IHtmlBackgroundWorker;
 import ca.qc.jeuxdegenie.jdgmobile.view.ResultDetailActivity;
 
 public class CompetitionResultsHtmlWorker implements IHtmlBackgroundWorker {

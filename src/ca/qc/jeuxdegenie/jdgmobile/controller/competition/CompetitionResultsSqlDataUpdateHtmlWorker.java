@@ -1,9 +1,9 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.competition;
+package ca.qc.jeuxdegenie.jdgmobile.controller.competition;
 
 import android.content.ContentValues;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IHtmlBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.IHtmlBackgroundWorker;
 import ca.qc.jeuxdegenie.jdgmobile.view.ResultFragment;
 
 public class CompetitionResultsSqlDataUpdateHtmlWorker implements IHtmlBackgroundWorker {

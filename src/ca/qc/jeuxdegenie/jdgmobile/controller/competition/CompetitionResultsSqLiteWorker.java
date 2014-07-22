@@ -1,8 +1,9 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.competition;
+package ca.qc.jeuxdegenie.jdgmobile.controller.competition;
 
 import android.database.Cursor;
 import ca.qc.jeuxdegenie.jdgmobile.R;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.ISqLiteBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.ISqLiteBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.competition.Result;
 import ca.qc.jeuxdegenie.jdgmobile.view.ResultDetailActivity;
 
 public class CompetitionResultsSqLiteWorker implements ISqLiteBackgroundWorker {

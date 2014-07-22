@@ -17,12 +17,11 @@ import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.DataAccessFacade;
 import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventSqlDataUpdateJsonWorker;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsJsonWorker;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.CalendarEventsSqLiteWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.calendar.CalendarEventSqlDataUpdateJsonWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.calendar.CalendarEventsJsonWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.calendar.CalendarEventsSqLiteWorker;
 import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
-import ca.qc.jeuxdegenie.jdgmobile.model.calendar.EventAdapter;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
+import ca.qc.jeuxdegenie.jdgmobile.view.interfaces.IUpdatableContext;
 
 /**
  * http://fr.openclassrooms.com/informatique/cours/aller-plus-loin-dans-le-developpement-android/listfragment
@@ -117,7 +116,7 @@ public class CalendarFragment extends ListFragment implements OnItemSelectedList
 		String selectedDate = (String) spinner.getSelectedItem();
 		List<Event> selectedDates = data.get(selectedDate);
 		
-		EventAdapter ea = new EventAdapter(getActivity(), 
+		CalendarFragmentAdapter ea = new CalendarFragmentAdapter(getActivity(), 
 										   R.layout.calendar_item_row, 
 										   selectedDates);
 		setListAdapter(ea);

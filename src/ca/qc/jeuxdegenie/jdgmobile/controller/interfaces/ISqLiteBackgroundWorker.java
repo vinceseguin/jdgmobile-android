@@ -1,4 +1,4 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.interfaces;
+package ca.qc.jeuxdegenie.jdgmobile.controller.interfaces;
 
 import android.database.Cursor;
 

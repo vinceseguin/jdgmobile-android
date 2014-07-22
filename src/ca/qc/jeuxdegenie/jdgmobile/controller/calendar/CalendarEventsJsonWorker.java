@@ -1,4 +1,4 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.calendar;
+package ca.qc.jeuxdegenie.jdgmobile.controller.calendar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,7 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import ca.qc.jeuxdegenie.jdgmobile.R;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.IJsonBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
 import ca.qc.jeuxdegenie.jdgmobile.view.CalendarFragment;
 
 public class CalendarEventsJsonWorker implements IJsonBackgroundWorker {

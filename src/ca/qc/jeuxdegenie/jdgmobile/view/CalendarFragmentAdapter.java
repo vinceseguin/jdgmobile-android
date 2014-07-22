@@ -1,4 +1,4 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.calendar;
+package ca.qc.jeuxdegenie.jdgmobile.view;
 
 import java.util.List;
 
@@ -13,19 +13,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import ca.qc.jeuxdegenie.jdgmobile.R;
-import ca.qc.jeuxdegenie.jdgmobile.view.EventDetailActivity;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
 
 /**
  * 
  * @author vgentilcore
  */
-public class EventAdapter extends ArrayAdapter<Event> {
+public class CalendarFragmentAdapter extends ArrayAdapter<Event> {
 
 	private Context context;
 	private int resource;
 	private List<Event> objects = null;
 
-	public EventAdapter(Context context, int resource, List<Event> objects) {
+	public CalendarFragmentAdapter(Context context, int resource, List<Event> objects) {
 		super(context, resource, objects);
 		this.context = context;
 		this.resource = resource;

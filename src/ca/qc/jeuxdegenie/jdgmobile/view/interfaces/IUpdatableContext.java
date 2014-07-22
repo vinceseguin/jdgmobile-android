@@ -1,8 +1,8 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.interfaces;
+package ca.qc.jeuxdegenie.jdgmobile.view.interfaces;
 
-import android.content.Context;
 import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
+import android.content.Context;
 
 public interface IUpdatableContext {
 

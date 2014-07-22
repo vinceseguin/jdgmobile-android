@@ -9,8 +9,8 @@ import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.DataAccessFacade;
 import ca.qc.jeuxdegenie.jdgmobile.controller.JsonDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.competition.CompetitionResultsSqLiteWorker;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
+import ca.qc.jeuxdegenie.jdgmobile.controller.competition.CompetitionResultsSqLiteWorker;
+import ca.qc.jeuxdegenie.jdgmobile.view.interfaces.IUpdatableContext;
 
 public class ResultDetailActivity extends Activity implements IUpdatableContext {
 

@@ -1,7 +1,7 @@
 package ca.qc.jeuxdegenie.jdgmobile.controller;
 
+import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.IHtmlBackgroundWorker;
 import android.os.AsyncTask;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IHtmlBackgroundWorker;
 
 public class HtmlDAO extends AsyncTask<String, String, String>{
 

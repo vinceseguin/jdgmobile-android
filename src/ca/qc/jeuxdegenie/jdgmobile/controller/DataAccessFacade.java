@@ -3,7 +3,7 @@ package ca.qc.jeuxdegenie.jdgmobile.controller;
 import android.content.Context;
 import android.widget.Toast;
 import ca.qc.jeuxdegenie.jdgmobile.R;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IUpdatableContext;
+import ca.qc.jeuxdegenie.jdgmobile.view.interfaces.IUpdatableContext;
 
 /**
  * 
@@ -51,7 +51,7 @@ public class DataAccessFacade {
 				//TODO - Check DBVersion number and init DatabaseHelper with that version
 				
 				if (sqLiteDAO.isTableEmpty()) { //if data was obsolete
-					iContext.getSqlDataUpdateJsonDAO().execute();
+					// iContext.getSqlDataUpdateJsonDAO().execute();
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.competition;
+package ca.qc.jeuxdegenie.jdgmobile.controller.competition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,8 @@ import android.content.ContentValues;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.HtmlDAO;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.IJsonBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.competition.Result;
 import ca.qc.jeuxdegenie.jdgmobile.view.ResultFragment;
 
 public class CompetitionTypesSqlDataUpdateJsonWorker implements IJsonBackgroundWorker {

@@ -1,4 +1,4 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.calendar;
+package ca.qc.jeuxdegenie.jdgmobile.controller.calendar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,7 +10,8 @@ import java.util.TreeMap;
 
 import android.database.Cursor;
 import ca.qc.jeuxdegenie.jdgmobile.R;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.ISqLiteBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.ISqLiteBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
 import ca.qc.jeuxdegenie.jdgmobile.view.CalendarFragment;
 
 public class CalendarEventsSqLiteWorker implements ISqLiteBackgroundWorker {

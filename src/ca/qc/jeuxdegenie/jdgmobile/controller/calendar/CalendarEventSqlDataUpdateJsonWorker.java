@@ -1,4 +1,4 @@
-package ca.qc.jeuxdegenie.jdgmobile.model.calendar;
+package ca.qc.jeuxdegenie.jdgmobile.controller.calendar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -6,7 +6,8 @@ import org.json.JSONException;
 import android.content.ContentValues;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.SqLiteDAO;
-import ca.qc.jeuxdegenie.jdgmobile.model.interfaces.IJsonBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.IJsonBackgroundWorker;
+import ca.qc.jeuxdegenie.jdgmobile.model.calendar.Event;
 import ca.qc.jeuxdegenie.jdgmobile.view.CalendarFragment;
 
 public class CalendarEventSqlDataUpdateJsonWorker implements IJsonBackgroundWorker {
