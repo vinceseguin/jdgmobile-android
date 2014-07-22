@@ -21,7 +21,7 @@ public class DbVersionJsonWorker implements IHtmlBackgroundWorker {
 
 	@Override
 	public void doWork(String result) {
-		int db_version = Integer.parseInt(result);
-		DataAccessFacade.getInstance().setDbVersion(db_version);
+		int db_version = Integer.parseInt(result.trim());
+		DataAccessFacade.getInstance().onPostExecute(db_version);
 	}
 }

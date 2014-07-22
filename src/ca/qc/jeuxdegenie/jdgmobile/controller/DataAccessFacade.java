@@ -12,6 +12,7 @@ import ca.qc.jeuxdegenie.jdgmobile.view.interfaces.IUpdatableContext;
 public class DataAccessFacade {
 
 	private int dbVersion = -1;
+	private IUpdatableContext iContext;
 
 	private static volatile DataAccessFacade instance = null;
 
@@ -34,32 +35,24 @@ public class DataAccessFacade {
 		return dbVersion;
 	}
 	
-	public void setDbVersion(int dbVersion) {
-		this.dbVersion = dbVersion;
-	}
 	
 	/**
 	 * 
 	 * @param context
 	 */
 	public void execute(IUpdatableContext iContext) {
-		Context context = iContext.getContext();
+		this.iContext = iContext;
 		
 		// Check for db_version... Must be called before anything else !
 		dbVersion = -1;
 		HtmlDAO htmlDAO = iContext.getDbVersionHtmlDAO();
 		htmlDAO.execute();
+	}
+	
+	public void onPostExecute(int db_version){
+		this.dbVersion = db_version;
 		
-		// Attente active...
-		try {
-			while (dbVersion == -1) {
-				Thread.sleep(100);
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		Context context = iContext.getContext();
 		SqLiteDAO sqLiteDAO = iContext.getSqLiteDAO();
 		if (sqLiteDAO.isTableEmpty()) {
 			//Test connectivity
