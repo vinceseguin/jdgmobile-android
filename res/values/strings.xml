@@ -8,7 +8,7 @@
     <string name="resultats">Résultats</string>
     <string name="partenaire">Partenaire</string>
     <string name="apropos">À propos</string>
-    <string name="backendLocation">http://10.192.169.196/JDGMobile-Web/</string>
+    <string name="backendLocation">http://192.168.1.112/JDGMobile-Web/</string>
     <string name="databaseName">jdg.db</string>
     <string name="sqlCreateEventTable">CREATE TABLE mobile_event (id INTEGER PRIMARY KEY, day TEXT NOT NULL, startDate TEXT NOT NULL, endDate TEXT NOT NULL, startTime TEXT NOT NULL, endTime TEXT NOT NULL, name TEXT NOT NULL, description TEXT NOT NULL, location TEXT NOT NULL, hasDescription INTEGER NOT NULL);</string>
     <string name="sqlDropEventTable">DROP TABLE IF EXISTS mobile_event;</string>

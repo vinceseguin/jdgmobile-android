@@ -1,6 +1,5 @@
 package ca.qc.jeuxdegenie.jdgmobile.controller.dbversion;
 
-import android.app.Fragment;
 import ca.qc.jeuxdegenie.jdgmobile.R;
 import ca.qc.jeuxdegenie.jdgmobile.controller.DataAccessFacade;
 import ca.qc.jeuxdegenie.jdgmobile.controller.interfaces.IHtmlBackgroundWorker;
@@ -10,8 +9,8 @@ public class DbVersionJsonWorker implements IHtmlBackgroundWorker {
 
 	private String url = "backend/WS/DbVersionWS.php?method=getDbVersionNumber";
 	
-	public DbVersionJsonWorker(IUpdatableContext context) {
-		this.url = ((Fragment)context).getText(R.string.backendLocation) + url;
+	public DbVersionJsonWorker(IUpdatableContext iContext) {
+		this.url = iContext.getContext().getText(R.string.backendLocation) + url;
 	}
 
 	@Override
