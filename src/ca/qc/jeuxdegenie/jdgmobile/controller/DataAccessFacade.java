@@ -13,6 +13,8 @@ public class DataAccessFacade {
 
 	private int dbVersion = -1;
 	private IUpdatableContext iContext;
+	
+	private static final int OFFLINE_VERSION_NUMBER = Integer.MAX_VALUE;
 
 	private static volatile DataAccessFacade instance = null;
 
@@ -35,6 +37,9 @@ public class DataAccessFacade {
 		return dbVersion;
 	}
 	
+	public static int getOfflineVersionNumber() {
+		return OFFLINE_VERSION_NUMBER;
+	}	
 	
 	/**
 	 * 
@@ -43,10 +48,18 @@ public class DataAccessFacade {
 	public void execute(IUpdatableContext iContext) {
 		this.iContext = iContext;
 		
-		// Check for db_version... Must be called before anything else !
-		dbVersion = -1;
-		HtmlDAO htmlDAO = iContext.getDbVersionHtmlDAO();
-		htmlDAO.execute();
+		// Check for db_version... Must be called before anything else (if there's internet)!
+		dbVersion = OFFLINE_VERSION_NUMBER;
+		//SQLiteDatabase db = 
+		//dbVersion = db.getVersion();
+		
+		//Test connectivity
+		if(AppStatus.getInstance(iContext.getContext()).isOnline()) {
+			HtmlDAO htmlDAO = iContext.getDbVersionHtmlDAO();
+			htmlDAO.execute();
+		} else { 
+			onPostExecute(dbVersion);
+		}
 	}
 	
 	public void onPostExecute(int db_version){

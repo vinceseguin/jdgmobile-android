@@ -32,9 +32,13 @@ public class SqLiteDatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL(sqlDropEventTable);
-		db.execSQL(sqlDropResultTable);
-		onCreate(db);
+		if(newVersion != DataAccessFacade.getOfflineVersionNumber()) { 
+			db.execSQL(sqlDropEventTable);
+			db.execSQL(sqlDropResultTable);
+			onCreate(db);
+		} else { 
+			db.setVersion(oldVersion);
+		}
 	}
 	
 	@Override
@@ -43,8 +47,10 @@ public class SqLiteDatabaseHelper extends SQLiteOpenHelper {
 		// Database will always be downgraded on creation because we pass 1 everytime.
 		// We need to do this because we have to check in the database for the db_version value.
 		// If database is outdated, tables will be recreated manually.
-		db.execSQL(sqlDropEventTable);
-		db.execSQL(sqlDropResultTable);
-		onCreate(db);
+		if(oldVersion != DataAccessFacade.getOfflineVersionNumber()) { 
+			db.execSQL(sqlDropEventTable);
+			db.execSQL(sqlDropResultTable);
+			onCreate(db);
+		}
 	}
 }
