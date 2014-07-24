@@ -50,8 +50,6 @@ public class DataAccessFacade {
 		
 		// Check for db_version... Must be called before anything else (if there's internet)!
 		dbVersion = OFFLINE_VERSION_NUMBER;
-		//SQLiteDatabase db = 
-		//dbVersion = db.getVersion();
 		
 		//Test connectivity
 		if(AppStatus.getInstance(iContext.getContext()).isOnline()) {
